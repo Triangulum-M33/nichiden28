@@ -378,16 +378,16 @@ namespace Ogose
             var target = new ToggleButton();
             switch (e.Key)
             {
-                case Key.W:
+                case Key.Up:
                     latitudePlusButtonCommand.Execute("KeyDown", latitudePlusButton);
                     break;
-                case Key.A:
+                case Key.Left:
                     diurnalPlusButtonCommand.Execute("KeyDown", diurnalPlusButton);
                     break;
-                case Key.S:
+                case Key.Down:
                     latitudeMinusButtonCommand.Execute("KeyDown", latitudeMinusButton);
                     break;
-                case Key.D:
+                case Key.Right:
                     diurnalMinusButtonCommand.Execute("KeyDown", diurnalMinusButton);
                     break;
             }
