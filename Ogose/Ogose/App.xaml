@@ -99,8 +99,8 @@
             <Setter Property="Background" Value="{StaticResource WindowBackground}" />
             <Setter Property="Height" Value="600" />
             <Setter Property="MinHeight" Value="600" />
-            <Setter Property="Width" Value="700" />
-            <Setter Property="MinWidth" Value="700" />
+            <Setter Property="Width" Value="850" />
+            <Setter Property="MinWidth" Value="850" />
 
         </Style>
         
@@ -258,6 +258,42 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="FontSize" Value="16" />
         </Style>
-
+        <Style x:Key="NotepadEditableTextbox" TargetType="TextBox">
+            <Setter Property="Background" Value="#180614"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="AcceptsReturn" Value="True"/>
+            <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+        </Style>
+        <Style x:Key="SaveButton" TargetType="{x:Type Button}">
+            <Setter Property="Foreground" Value="{StaticResource ButtonNormalForeground}"/>
+            <Setter Property="FocusVisualStyle" Value="{DynamicResource NormalFocusVisual}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border x:Name="Background" CornerRadius="2"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}">
+                                <Grid>
+                                    <Rectangle x:Name="InnerBackground" Fill="{StaticResource ButtonNormalBackground}"/>
+                                </Grid>
+                            </Border>
+                            <ContentPresenter x:Name="Content" 
+                                  TextBlock.Foreground="{StaticResource ButtonNormalForeground}" 
+                                  VerticalAlignment="Center" 
+                                  HorizontalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <!-- マウスオーバー -->
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="InnerBackground"  Property="Fill" Value="#FF222288" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
