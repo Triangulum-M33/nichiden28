@@ -393,5 +393,41 @@ namespace Ogose
                     break;
             }
         }
+
+        //保存ボタンのイベント設定
+        private void Savebutton1_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfg = new SaveFileDialog();
+            sfg.FilterIndex = 1;
+            sfg.Filter = "テキスト ファイル(.txt)|*.txt|HTML File(*.html, *.htm)|*.html;*.htm|All Files (*.*)|*.*";
+            bool? result = sfg.ShowDialog();
+            if (result == true)
+            {
+                textblocktest.Text = sfg.SafeFileName;
+                using (Stream fileStream = sfg.OpenFile())
+                using (StreamWriter sr = new StreamWriter(fileStream))
+                {
+                    sr.Write(textBox1.Text);
+                }
+            }
+        }
+        //開くボタン（仮）のイベント。後にコンボボックスに置き換える予定
+        private void Openbutton1_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog(); //インスタンス生成
+            ofd.FilterIndex = 1;　//フィルターの1番目をデフォルトで選択、この場合txtファイル
+            ofd.Filter = "テキスト ファイル(.txt)|*.txt|HTML File(*.html, *.htm)|*.html;*.htm|All Files (*.*)|*.*";　//フィルター種
+            ofd.InitialDirectory = @"C:\TXTTest"; //初期で開くディレクトリの位置、後に変更すること
+            bool? result = ofd.ShowDialog(); //Y/Nダイアログの表示、Y押されたらtrueが返る
+            if (result == true)
+            {
+                textblocktest.Text = ofd.FileName;　//対応するテキストブロックにファイル名表示、削除予定
+                using (Stream fileStream = ofd.OpenFile())
+                {
+                    StreamReader sr = new StreamReader(fileStream, Encoding.GetEncoding("shift_jis"), true);
+                    textBox1.Text = sr.ReadToEnd();
+                }
+            }
+        }
     }
 }
