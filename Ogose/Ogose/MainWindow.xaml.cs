@@ -115,6 +115,11 @@ namespace Ogose
             {
                 BaudRate = 2400
             };
+            using (FileStream fs = new FileStream(@"C:\TXTTest\0.無題.txt", FileMode.Open, FileAccess.ReadWrite))
+            {
+                StreamReader sr = new StreamReader(fs, Encoding.GetEncoding("shift_jis"), true);
+                textBox1.Text = sr.ReadToEnd();
+            }
         }
 
         /// <summary>
@@ -393,7 +398,14 @@ namespace Ogose
                     break;
             }
         }
-
+        private void textBox1_Loaded(object sender,EventArgs e)
+        {
+            using (FileStream fs = new FileStream(@"C:\TXTTest\0.無題.txt", FileMode.Open, FileAccess.ReadWrite))
+            {
+                StreamReader sr = new StreamReader(fs, Encoding.GetEncoding("shift_jis"), true);
+                textBox1.Text = sr.ReadToEnd();
+            }
+        }
         //保存ボタンのイベント設定
         private void Savebutton1_Click(object sender, RoutedEventArgs e)
         {
@@ -403,7 +415,6 @@ namespace Ogose
             bool? result = sfg.ShowDialog();
             if (result == true)
             {
-                textblocktest.Text = sfg.SafeFileName;
                 using (Stream fileStream = sfg.OpenFile())
                 using (StreamWriter sr = new StreamWriter(fileStream))
                 {
@@ -411,20 +422,44 @@ namespace Ogose
                 }
             }
         }
-        //開くボタン（仮）のイベント。後にコンボボックスに置き換える予定
-        private void Openbutton1_Click(object sender, RoutedEventArgs e)
+        //開くコンボボックス（仮）
+        private void notepadCombobox_Loaded(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog(); //インスタンス生成
-            ofd.FilterIndex = 1;　//フィルターの1番目をデフォルトで選択、この場合txtファイル
-            ofd.Filter = "テキスト ファイル(.txt)|*.txt|HTML File(*.html, *.htm)|*.html;*.htm|All Files (*.*)|*.*";　//フィルター種
-            ofd.InitialDirectory = @"C:\TXTTest"; //初期で開くディレクトリの位置、後に変更すること
-            bool? result = ofd.ShowDialog(); //Y/Nダイアログの表示、Y押されたらtrueが返る
-            if (result == true)
+            var item = notepadCombobox.SelectedItem;
+            string[] files = Directory.GetFiles(
+                        @"C:\TXTTest", "*.txt", SearchOption.AllDirectories);
+            
+            Array.Sort(files);
+            
+            foreach (var file in files)
+                notepadCombobox.Items.Add(file);
+            
+            if (notepadCombobox.Items.Count > 0)
+                notepadCombobox.SelectedIndex = 0;
+            if(item != null)
             {
-                textblocktest.Text = ofd.FileName;　//対応するテキストブロックにファイル名表示、削除予定
-                using (Stream fileStream = ofd.OpenFile())
+                notepadCombobox.SelectedIndex = Array.IndexOf(files, item.ToString());
+            }
+        }
+        private void notepadCombobox_DropDownOpened(object sender, EventArgs e)
+        {
+            var item = notepadCombobox.SelectedItem;
+            notepadCombobox.SelectedIndex = -1;
+            notepadCombobox.Items.Clear();
+            string[] files = Directory.GetFiles(
+                    @"C:\TXTTest", "*.txt", SearchOption.AllDirectories);
+            Array.Sort(files);
+            var directoryinfo = new DirectoryInfo(@"C:\TXTTest");
+
+            foreach (var file in files)
+                notepadCombobox.Items.Add(file);
+
+            if (item != null)
+            {
+                notepadCombobox.SelectedIndex = Array.IndexOf(files, item.ToString());
+                using (FileStream fs = new FileStream(item.ToString(), FileMode.Open, FileAccess.ReadWrite))
                 {
-                    StreamReader sr = new StreamReader(fileStream, Encoding.GetEncoding("shift_jis"), true);
+                    StreamReader sr = new StreamReader(fs, Encoding.GetEncoding("shift_jis"), true);
                     textBox1.Text = sr.ReadToEnd();
                 }
             }
