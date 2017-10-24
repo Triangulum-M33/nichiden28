@@ -115,10 +115,13 @@ namespace Ogose
             {
                 BaudRate = 2400
             };
+
+            textblock1.Text = @"C:\TXTTest\0.無題.txt";
             using (FileStream fs = new FileStream(@"C:\TXTTest\0.無題.txt", FileMode.Open, FileAccess.ReadWrite))
             {
                 StreamReader sr = new StreamReader(fs, Encoding.GetEncoding("shift_jis"), true);
                 textBox1.Text = sr.ReadToEnd();
+                
             }
         }
 
@@ -370,13 +373,15 @@ namespace Ogose
             {
               result = MessageBox.Show("公演モードを解除します。\nよろしいですか？", "Changing Mode", MessageBoxButton.YesNo);
             }
-            if(result == MessageBoxResult.No) return;
+            if(result == MessageBoxResult.No) return;//(花)この辺にチェックボックスの表示の切り替え設定細かく入れてもいいかも
             List<string> keyList = new List<string>(isEnabled.Keys); // isEnabled.Keysを直接見に行くとループで書き換えてるので実行時エラーになる
             foreach (string key in keyList)
             {
                 if(key != "diurnalMinusButton") isEnabled[key] = !isPerfMode;
             }
             latitudeRadioButton1.IsEnabled = latitudeRadioButton2.IsEnabled = latitudeRadioButton3.IsEnabled = latitudeRadioButton4.IsEnabled = !isPerfMode;
+            notepadCombobox.IsEnabled = Savebutton1.IsEnabled = !isPerfMode;
+            textBox1.Focusable = !isPerfMode; //(花)公演モード中に書き込みしたい場合はこの行を削除する。見た目変更なしにフォーカス不可にしている
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -398,54 +403,30 @@ namespace Ogose
                     break;
             }
         }
-        private void textBox1_Loaded(object sender,EventArgs e)
-        {
-            using (FileStream fs = new FileStream(@"C:\TXTTest\0.無題.txt", FileMode.Open, FileAccess.ReadWrite))
-            {
-                StreamReader sr = new StreamReader(fs, Encoding.GetEncoding("shift_jis"), true);
-                textBox1.Text = sr.ReadToEnd();
-            }
-        }
+        
         //保存ボタンのイベント設定
         private void Savebutton1_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog sfg = new SaveFileDialog();
             sfg.FilterIndex = 1;
-            sfg.Filter = "テキスト ファイル(.txt)|*.txt|HTML File(*.html, *.htm)|*.html;*.htm|All Files (*.*)|*.*";
+            sfg.Filter = "テキスト ファイル(.txt)|*.txt";
             bool? result = sfg.ShowDialog();
             if (result == true)
             {
                 using (Stream fileStream = sfg.OpenFile())
-                using (StreamWriter sr = new StreamWriter(fileStream))
+                using (StreamWriter sr = new StreamWriter(fileStream,Encoding.GetEncoding("shift_jis")))
                 {
                     sr.Write(textBox1.Text);
                 }
             }
         }
-        //開くコンボボックス（仮）
-        private void notepadCombobox_Loaded(object sender, EventArgs e)
-        {
-            var item = notepadCombobox.SelectedItem;
-            string[] files = Directory.GetFiles(
-                        @"C:\TXTTest", "*.txt", SearchOption.AllDirectories);
-            
-            Array.Sort(files);
-            
-            foreach (var file in files)
-                notepadCombobox.Items.Add(file);
-            
-            if (notepadCombobox.Items.Count > 0)
-                notepadCombobox.SelectedIndex = 0;
-            if(item != null)
-            {
-                notepadCombobox.SelectedIndex = Array.IndexOf(files, item.ToString());
-            }
-        }
+        //開くコンボボックス（一旦これで本実装、動作重くなるようだったらClose分けてそっちで書き込みやってもいいかも？)
         private void notepadCombobox_DropDownOpened(object sender, EventArgs e)
         {
             var item = notepadCombobox.SelectedItem;
             notepadCombobox.SelectedIndex = -1;
             notepadCombobox.Items.Clear();
+
             string[] files = Directory.GetFiles(
                     @"C:\TXTTest", "*.txt", SearchOption.AllDirectories);
             Array.Sort(files);
@@ -456,13 +437,17 @@ namespace Ogose
 
             if (item != null)
             {
+                textblock1.Text = item.ToString();
                 notepadCombobox.SelectedIndex = Array.IndexOf(files, item.ToString());
                 using (FileStream fs = new FileStream(item.ToString(), FileMode.Open, FileAccess.ReadWrite))
                 {
                     StreamReader sr = new StreamReader(fs, Encoding.GetEncoding("shift_jis"), true);
                     textBox1.Text = sr.ReadToEnd();
+
                 }
             }
         }
+        
+
     }
 }

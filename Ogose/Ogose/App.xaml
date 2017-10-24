@@ -290,6 +290,10 @@
                             <Trigger Property="IsMouseOver" Value="true">
                                 <Setter TargetName="InnerBackground"  Property="Fill" Value="#FF222288" />
                             </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Content" Property="TextBlock.Foreground" Value="{StaticResource ButtonDisableForeground}"  />
+                                <Setter TargetName="InnerBackground" Property="Fill" Value="{StaticResource ButtonDisableBackground}"  />
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
