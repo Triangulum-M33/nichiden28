@@ -430,7 +430,6 @@ namespace Ogose
             string[] files = Directory.GetFiles(
                     @"C:\TXTTest", "*.txt", SearchOption.AllDirectories);
             Array.Sort(files);
-            var directoryinfo = new DirectoryInfo(@"C:\TXTTest");
 
             foreach (var file in files)
                 notepadCombobox.Items.Add(file);
