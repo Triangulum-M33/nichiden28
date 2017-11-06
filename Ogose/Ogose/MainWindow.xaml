@@ -115,8 +115,8 @@
         </Grid>
         <CheckBox x:Name="checkBox1" Content="フルスクリーン" Grid.Row="3" Grid.Column="2"
                       Checked="checkBox1_Checked" Unchecked="checkBox1_Unchecked" />
-        <CheckBox x:Name="checkBox2" Content="公演モード" Grid.Row="3" Grid.Column="3"
-                      Checked="checkBox2_Changed" Unchecked="checkBox2_Changed" />
+        <CheckBox x:Name="checkBox2" Content="公演モード" Grid.Row="3" Grid.Column="3" 
+                      Checked="checkBox2_Checked" Unchecked="checkBox2_Unchecked" />
         <Grid x:Name="TextBoxGrid" Grid.Row="1" Grid.Column="5" Grid.RowSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="90*"/>

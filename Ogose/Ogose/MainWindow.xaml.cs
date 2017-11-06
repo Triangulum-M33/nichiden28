@@ -116,12 +116,20 @@ namespace Ogose
                 BaudRate = 2400
             };
 
-            textblock1.Text = @"C:\TXTTest\0.無題.txt";
+            textblock1.Text = "0.無題.txt";
             using (FileStream fs = new FileStream(@"C:\TXTTest\0.無題.txt", FileMode.Open, FileAccess.ReadWrite))
             {
-                StreamReader sr = new StreamReader(fs, Encoding.GetEncoding("shift_jis"), true);
-                textBox1.Text = sr.ReadToEnd();
-                
+                using (StreamReader sr = new StreamReader(fs, Encoding.GetEncoding("shift_jis"), true))
+                {
+                    try
+                    {
+                        textBox1.Text = sr.ReadToEnd();
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
             }
         }
 
@@ -361,19 +369,17 @@ namespace Ogose
             this.window1.Topmost = false;
         }
 
-        private void checkBox2_Changed(object sender, RoutedEventArgs e)
+        private void checkBox2_Checked(object sender, RoutedEventArgs e)
         {
             var result = new MessageBoxResult();
-            isPerfMode = (bool)(((CheckBox)sender).IsChecked);
-            if(isPerfMode)
+            result = MessageBox.Show("公演モードに切り替えます。\n日周を進める以外の動作はロックされます。よろしいですか？", "Changing Mode", MessageBoxButton.YesNo);
+            
+            if(result == MessageBoxResult.No)
             {
-              result = MessageBox.Show("公演モードに切り替えます。\n日周を進める以外の動作はロックされます。よろしいですか？", "Changing Mode", MessageBoxButton.YesNo);
+                checkBox2.IsChecked = false;
+                return;
             }
-            else
-            {
-              result = MessageBox.Show("公演モードを解除します。\nよろしいですか？", "Changing Mode", MessageBoxButton.YesNo);
-            }
-            if(result == MessageBoxResult.No) return;//(花)この辺にチェックボックスの表示の切り替え設定細かく入れてもいいかも
+            isPerfMode = true;
             List<string> keyList = new List<string>(isEnabled.Keys); // isEnabled.Keysを直接見に行くとループで書き換えてるので実行時エラーになる
             foreach (string key in keyList)
             {
@@ -384,6 +390,21 @@ namespace Ogose
             textBox1.Focusable = !isPerfMode; //(花)公演モード中に書き込みしたい場合はこの行を削除する。見た目変更なしにフォーカス不可にしている
         }
 
+        private void checkBox2_Unchecked(object sender, RoutedEventArgs e)
+        {
+            var result = new MessageBoxResult();
+            result = MessageBox.Show("公演モードを解除します。", "Changing Mode", MessageBoxButton.OK);
+
+            isPerfMode = false;
+            List<string> keyList = new List<string>(isEnabled.Keys); // isEnabled.Keysを直接見に行くとループで書き換えてるので実行時エラーになる
+            foreach (string key in keyList)
+            {
+                if (key != "diurnalMinusButton") isEnabled[key] = !isPerfMode;
+            }
+            latitudeRadioButton1.IsEnabled = latitudeRadioButton2.IsEnabled = latitudeRadioButton3.IsEnabled = latitudeRadioButton4.IsEnabled = !isPerfMode;
+            notepadCombobox.IsEnabled = Savebutton1.IsEnabled = !isPerfMode;
+            textBox1.Focusable = !isPerfMode; 
+        }
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             var target = new ToggleButton();
@@ -436,12 +457,21 @@ namespace Ogose
 
             if (item != null)
             {
-                textblock1.Text = item.ToString();
+                textblock1.Text = Path.GetFileName(item.ToString());
                 notepadCombobox.SelectedIndex = Array.IndexOf(files, item.ToString());
                 using (FileStream fs = new FileStream(item.ToString(), FileMode.Open, FileAccess.ReadWrite))
                 {
-                    StreamReader sr = new StreamReader(fs, Encoding.GetEncoding("shift_jis"), true);
-                    textBox1.Text = sr.ReadToEnd();
+                    using (StreamReader sr = new StreamReader(fs, Encoding.GetEncoding("shift_jis"), true))
+                    {
+                        try
+                        {
+                            textBox1.Text = sr.ReadToEnd();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
 
                 }
             }
