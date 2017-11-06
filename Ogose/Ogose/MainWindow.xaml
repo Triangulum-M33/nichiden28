@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Ogose"
         mc:Ignorable="d"
-        Loaded="Window_Loaded" KeyDown="Window_KeyDown"
+        Loaded="Window_Loaded" 
         Title="越生: 日周緯度変コントローラ" Style="{StaticResource {x:Type Window}}">
 
     <Grid x:Name="MainGrid">

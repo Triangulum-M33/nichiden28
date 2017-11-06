@@ -218,15 +218,7 @@ namespace Ogose
                 MessageBox.Show("Error: コントローラと接続して下さい\ncommand: "+ cmd, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-
-        private void selectRadioButton(string gridName, int direction)
-        {
-            var buttons = ((Grid)FindName(gridName)).Children;
-            foreach(RadioButton item in buttons)
-            {
-                MessageBox.Show(item.Content.ToString());
-            }
-        }
+        
 
         private void diurnalRadioButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -237,9 +229,9 @@ namespace Ogose
             else if (radioButton.Name == "diurnalRadioButton4") diurnal_speed = SPEED_DIURNAL["very_low"];
 
             if (diurnalPlusButton.IsChecked == true)
-                diurnalPlusButtonCommand.Execute(null, diurnalPlusButton);
+                emitCommand(nisshuidohenController.RotateDiurnalBySpeed(diurnal_speed));
             if (diurnalMinusButton.IsChecked == true)
-                diurnalMinusButtonCommand.Execute(null, diurnalMinusButton);
+                emitCommand(nisshuidohenController.RotateDiurnalBySpeed(-diurnal_speed));
         }
 
         private void latitudeRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -251,9 +243,9 @@ namespace Ogose
             else if (radioButton.Name == "latitudeRadioButton4") latitude_speed = SPEED_LATITUDE["very_low"];
 
             if (latitudePlusButton.IsChecked == true)
-                latitudePlusButtonCommand.Execute(null, latitudePlusButton);
+                emitCommand(nisshuidohenController.RotateLatitudeBySpeed(latitude_speed));
             if (latitudeMinusButton.IsChecked == true)
-                latitudeMinusButtonCommand.Execute(null, latitudeMinusButton);
+                emitCommand(nisshuidohenController.RotateLatitudeBySpeed(-latitude_speed));
         }
 
         /// <summary>
@@ -289,10 +281,10 @@ namespace Ogose
 
         private void diurnalPlusButtonCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (e.Parameter != null && e.Parameter.ToString() == "KeyDown")
+            /*if (e.Parameter != null && e.Parameter.ToString() == "KeyDown")
             {
                 ((ToggleButton)sender).IsChecked = !((ToggleButton)sender).IsChecked;
-            }
+            }*/
             if (sender as ToggleButton != null && ((ToggleButton)sender).IsChecked == false)
             {
                 emitCommand(nisshuidohenController.RotateDiurnalBySpeed(0));
@@ -306,10 +298,10 @@ namespace Ogose
 
         private void diurnalMinusButtonCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (e.Parameter != null && e.Parameter.ToString() == "KeyDown")
+            /*if (e.Parameter != null && e.Parameter.ToString() == "KeyDown")
             {
                 ((ToggleButton)sender).IsChecked = !((ToggleButton)sender).IsChecked;
-            }
+            }*/
             if (sender as ToggleButton != null && ((ToggleButton)sender).IsChecked == false)
             {
                 emitCommand(nisshuidohenController.RotateDiurnalBySpeed(0));
@@ -323,10 +315,10 @@ namespace Ogose
 
         private void latitudePlusButtonCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (e.Parameter != null && e.Parameter.ToString() == "KeyDown")
+            /*if (e.Parameter != null && e.Parameter.ToString() == "KeyDown")
             {
                 ((ToggleButton)sender).IsChecked = !((ToggleButton)sender).IsChecked;
-            }
+            }*/
             if (sender as ToggleButton != null && ((ToggleButton)sender).IsChecked == false)
             {
                 emitCommand(nisshuidohenController.RotateLatitudeBySpeed(0));
@@ -340,10 +332,10 @@ namespace Ogose
 
         private void latitudeMinusButtonCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            if (e.Parameter != null && e.Parameter.ToString() == "KeyDown")
+            /*if (e.Parameter != null && e.Parameter.ToString() == "KeyDown")
             {
                 ((ToggleButton)sender).IsChecked = !((ToggleButton)sender).IsChecked;
-            }
+            }*/
             if (sender as ToggleButton != null && ((ToggleButton)sender).IsChecked == false)
             {
                 emitCommand(nisshuidohenController.RotateLatitudeBySpeed(0));
@@ -387,7 +379,7 @@ namespace Ogose
             }
             latitudeRadioButton1.IsEnabled = latitudeRadioButton2.IsEnabled = latitudeRadioButton3.IsEnabled = latitudeRadioButton4.IsEnabled = !isPerfMode;
             notepadCombobox.IsEnabled = Savebutton1.IsEnabled = !isPerfMode;
-            textBox1.Focusable = !isPerfMode; //(花)公演モード中に書き込みしたい場合はこの行を削除する。見た目変更なしにフォーカス不可にしている
+            textBox1.Focusable = !isPerfMode; 
         }
 
         private void checkBox2_Unchecked(object sender, RoutedEventArgs e)
@@ -405,25 +397,7 @@ namespace Ogose
             notepadCombobox.IsEnabled = Savebutton1.IsEnabled = !isPerfMode;
             textBox1.Focusable = !isPerfMode; 
         }
-        private void Window_KeyDown(object sender, KeyEventArgs e)
-        {
-            var target = new ToggleButton();
-            switch (e.Key)
-            {
-                case Key.Up:
-                    latitudePlusButtonCommand.Execute("KeyDown", latitudePlusButton);
-                    break;
-                case Key.Left:
-                    diurnalPlusButtonCommand.Execute("KeyDown", diurnalPlusButton);
-                    break;
-                case Key.Down:
-                    latitudeMinusButtonCommand.Execute("KeyDown", latitudeMinusButton);
-                    break;
-                case Key.Right:
-                    diurnalMinusButtonCommand.Execute("KeyDown", diurnalMinusButton);
-                    break;
-            }
-        }
+        
         
         //保存ボタンのイベント設定
         private void Savebutton1_Click(object sender, RoutedEventArgs e)
@@ -476,7 +450,41 @@ namespace Ogose
                 }
             }
         }
-        
 
+        /// <summary>
+        /// ショートカットキー用、誤操作防止のため現在使用していない。
+        /// 使用時はMainWindow.xamlのKeyDownイベント設定すること。
+        /// </summary>
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            var target = new ToggleButton();
+            switch (e.Key)
+            {
+                case Key.W:
+                    latitudePlusButtonCommand.Execute("KeyDown", latitudePlusButton);
+                    break;
+                case Key.A:
+                    diurnalPlusButtonCommand.Execute("KeyDown", diurnalPlusButton);
+                    break;
+                case Key.S:
+                    latitudeMinusButtonCommand.Execute("KeyDown", latitudeMinusButton);
+                    break;
+                case Key.D:
+                    diurnalMinusButtonCommand.Execute("KeyDown", diurnalMinusButton);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 現在使用されていない模様。何のためにあるかは謎
+        /// </summary>
+        private void selectRadioButton(string gridName, int direction)
+        {
+            var buttons = ((Grid)FindName(gridName)).Children;
+            foreach (RadioButton item in buttons)
+            {
+                MessageBox.Show(item.Content.ToString());
+            }
+        }
     }
 }
