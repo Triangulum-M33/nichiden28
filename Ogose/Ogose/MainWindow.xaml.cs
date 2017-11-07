@@ -385,7 +385,7 @@ namespace Ogose
         private void checkBox2_Unchecked(object sender, RoutedEventArgs e)
         {
             var result = new MessageBoxResult();
-            result = MessageBox.Show("公演モードを解除します。", "Changing Mode", MessageBoxButton.OK);
+            result = MessageBox.Show("公演モードを終了します。", "Finish PerfMode", MessageBoxButton.OK);
 
             isPerfMode = false;
             List<string> keyList = new List<string>(isEnabled.Keys); // isEnabled.Keysを直接見に行くとループで書き換えてるので実行時エラーになる
