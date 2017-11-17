@@ -1,0 +1,36 @@
+{
+    "info": {
+        "day": "一日目",
+        "title": "星空探索",
+        "name": "佐藤"
+    },
+    "scenario": [
+        {
+            "timing": "",
+            "word": "",
+            "projector": {
+                "Fst": 1,
+                "Gxy": 1
+            }
+        },
+        {
+            "timing": "pre",
+            "word": "あいう",
+            "projector": {
+                "And": 1,
+                "Sgr": 1,
+                "Pse": 1
+            }
+        },
+        {
+            "timing": "pre",
+            "word": "うさぎＯＮ",
+            "projector": {
+                "And": 0,
+                "Sgr": 0,
+                "Pse": 0,
+                "Lep": 1
+            }
+        }
+    ]
+}

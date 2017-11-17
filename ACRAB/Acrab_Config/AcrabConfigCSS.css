@@ -1,0 +1,102 @@
+body{
+    background-image: url(IMG_0184-5.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family:  Arial,“ヒラギノ角ゴ ProN W3″,“Hiragino Kaku Gothic ProN”,“メイリオ”,Meiryo,sans-serif;
+    
+}
+title {
+}
+h1 {
+    color: coral;
+    text-align: center;
+}
+form {
+    width: 80%;
+    background: rgba(255,0,0,0.3);
+    overflow: scroll;
+    margin: 50px auto;
+    padding: 50px;
+}
+form p {
+    color: azure;
+}
+form p br {
+}
+form #filename {
+}
+form #day {
+}
+form #day option {
+}
+form #title {
+}
+form #staffname {
+}
+form #form_block[0] {
+}
+form #form_block[0]form #form_block[0] p {
+}
+form #close {
+}
+form #close br {
+}
+form #timing_pre[0] {
+}
+form #timing_post[0] {
+}
+form #projector_a[0] {
+}
+form #projector_a[0] option {
+}
+form #on_a[0] {
+}
+form #off_a[0] {
+}
+form #projector_b[0] {
+}
+form #projector_b[0] option {
+}
+form #on_b[0] {
+}
+form #off_b[0] {
+}
+form #projector_c[0] {
+}
+form #projector_c[0] option {
+}
+form #on_c[0] {
+}
+form #off_c[0] {
+}
+form #projector_d[0] {
+}
+form #projector_d[0] option {
+}
+form #on_d[0] {
+}
+form #off_d[0] {
+}
+form #projector_e[0] {
+}
+form #projector_e[0] option {
+}
+form #on_e[0] {
+}
+form #off_e[0] {
+}
+form #word[0] {
+}
+form #form_add {
+}
+form #form_addform #add {
+}
+form #form_send {
+}
+form #form_sendform #form_send br {
+}
+form #send_button {
+    float: right;
+}
+form input {
+}

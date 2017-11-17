@@ -119,7 +119,7 @@ namespace Ogose
             };
 
             textblock1.Text = "0.無題.txt";
-            using (FileStream fs = new FileStream(wiDirectory +"\0.無題.txt", FileMode.Open, FileAccess.ReadWrite))
+            using (FileStream fs = new FileStream(wiDirectory + @"\0.無題.txt", FileMode.Open, FileAccess.ReadWrite))
             {
                 using (StreamReader sr = new StreamReader(fs, Encoding.GetEncoding("shift_jis"), true))
                 {
