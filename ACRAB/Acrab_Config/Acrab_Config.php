@@ -1,5 +1,7 @@
 <?php
+//エラーチェックするときは以下の1行をコメントアウト
 ini_set('display_errors', "Off");
+
 //POSTで送信されたデータを変数に格納
 if(isset($_POST['filename'])){
     $filename = $_POST['filename'];
@@ -88,6 +90,7 @@ $DATA_ARRAY = array(
         }
         
     }
+    //POSTで受け取ったon/off(1/0)の文字列データを数字へ変換
     $on_off_alt_a = clone_int($on_off_a_);
     $on_off_alt_b = clone_int($on_off_b_);
     $on_off_alt_c = clone_int($on_off_c_);
@@ -123,9 +126,12 @@ $DATA_ARRAY = array(
     
     $make = json_encode($DATA_ARRAY,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
     
-    //使用時はこの行をアクティブにすること
-    if($filename)
+    //使用時は以下をアクティブにすること
+    if($filename){
         file_put_contents("jsonBOX/".$filename.".json",$make);
+        $result = file_get_contents("jsonBOX/".$filename.".json");
+    }
+        
     
 ?>
 <!DOCTYPE HTML>
@@ -153,6 +159,7 @@ $DATA_ARRAY = array(
                 <input type="text" id="title" name="title"/> </p>
             <p>担当者:<br>
                 <input type="text" id="staffname" name="staffname"/></p>
+            <p id="scenario">シナリオ</p>
                 <div class="form-block" id="form_block[0]">
                     <!-- Closeボタン -->
                     <button type="button" id="close" style="display: none;">-</button>
@@ -266,12 +273,27 @@ $DATA_ARRAY = array(
             <button type="button" id="add">+</button>
         </div>
         <div class="form-block" id="form_send"><br>
-            <input type="button" id="send_button"  value="送信"  />
+            <input type="button" id="send_button"  value="JSONを作成"  />
         <!--    <input type="reset" id="reset_button" value="リセット"/>    -->
-        </div>
+        </div> 
         <!--script.js内でフォーム個数をカウントするfrm_cntグローバル変数を受け取ってphpに渡す用-->
         <input type="hidden" name="count" value="" />
+        <div class="form-block" id="form_confirm">
+            <p>出力したJSON: <?php 
+                if($filename)
+                    echo $filename.".json"
+                 ?><br>
+                <textarea readonly id="resulttext" rows="46" cols="60">
+                <?php print_r($result); ?>
+                </textarea><br>
+                <small>JSONの整形と構文チェックをやってくれるサイト(別タブ)→
+                    <a href="https://lab.syncer.jp/Tool/JSON-Viewer/" target="_blank">JSON-Viewer</a></small>
+            </p>
+        </div>
       </form>
+    <footer>
+        <small>28日電作成/chromeでの表示推奨です/写真提供:28須田くん/ver1.05</small>
+    </footer>
 </body>
 </html>
   

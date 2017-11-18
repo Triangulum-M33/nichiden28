@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     var frm_cnt = 0;
     $('#add').click(this,function(){
         //オリジナルを取得
@@ -62,7 +62,8 @@ $(function() {
     });
     $('#send_button').click(this,function(){
         document.forms['frm'].elements['count'].value = frm_cnt + 1;
-        document.frm.submit();   
+        document.frm.submit();
+        //$("#form_confirm").css("visibility","visible");
     });
     
 });
