@@ -1,6 +1,6 @@
 var ip, port, group = {};
 
-(function(){ // 読み込み時実行
+$(function(){ // 読み込み時実行
   /*** 設定ファイル ***/
   $.getJSON("acrab_conf.json", function(data){
     ip = data.ip;
@@ -11,7 +11,7 @@ var ip, port, group = {};
     });
     pinSettingSend(); // pin設定
   });
-}());
+});
 
 
 $(function() {

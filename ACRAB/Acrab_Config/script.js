@@ -12,7 +12,7 @@ $(function () {
         var originradio_e = $("input[name='on_off_e_\\[" + frm_cnt + "\\]']:checked").val();
         
         frm_cnt++;　//カウント1増やす
-
+　　　　　
 　　　　　original
           .clone() //クローン
           .hide()  //一旦隠す
@@ -22,13 +22,14 @@ $(function () {
           .end() // 一度適用する
           .find('input, textarea, select').each(function(idx, obj) {　//inputとtextareaのidとnameを置き換える
               $(obj).attr({
-                  id: $(obj).attr('id').replace(/\[[0-9]\]+$/, '[' + frm_cnt + ']'),
-                  name: $(obj).attr('name').replace(/\[[0-9]\]+$/, '[' + frm_cnt + ']')
+                  id: $(obj).attr('id').replace(/\[\d{1,3}\]+$/, '[' + frm_cnt + ']'),
+                  name: $(obj).attr('name').replace(/\[\d{1,3}\]+$/, '[' + frm_cnt + ']')
               });
               if ($(obj).attr('id') == 'word['+ frm_cnt +']') { //textの値をクリア
                 $(obj).val('');
               }
           });
+        
           var clone = $('#form_block\\[' + frm_cnt + '\\]');
           clone.children('button#close').show();
           clone.slideDown('slow');
@@ -38,6 +39,7 @@ $(function () {
           original.find("input[name='on_off_c_\\[" + originCnt + "\\]'][value='" + originradio_c + "']").prop('checked', true);
           original.find("input[name='on_off_d_\\[" + originCnt + "\\]'][value='" + originradio_d + "']").prop('checked', true);
           original.find("input[name='on_off_e_\\[" + originCnt + "\\]'][value='" + originradio_e + "']").prop('checked', true);
+        
     });
     $(document).on('click','#close',function(){
         var removeObj = $(this).parent();
@@ -63,7 +65,6 @@ $(function () {
     $('#send_button').click(this,function(){
         document.forms['frm'].elements['count'].value = frm_cnt + 1;
         document.frm.submit();
-        //$("#form_confirm").css("visibility","visible");
     });
     
 });
