@@ -1,13 +1,13 @@
 var info, scenario = {};
-const SCENARIO_COUNT = 4; // ファイルの数はブラウザからじゃわからないので必ずここで指定!!!
+const SCENARIO_COUNT = 9; // ファイルの数はブラウザからじゃわからないので必ずここで指定!!!
 
 (function(){
   var scenario_file = [];
   /*** Initialize select box ***/
-  for(var i=0;i<SCENARIO_COUNT;i++) scenario_file[i] = $.getJSON('scenario/'+ i +'.json');
+  for(var i=0;i<SCENARIO_COUNT;i++) scenario_file[i] = $.getJSON('scenario/'+ i +'.json'); //変更箇所
   $.when.apply($, scenario_file).done(function(){ // シナリオファイルが全部取得できたら<option>と<optgroup>追加
     $.each(arguments, function(index){ // argumentsに取得したjsonが全部入ってるのでそれぞれ読む
-      var init_info = this[0].info;
+      var init_info = this[0].info;　//json内のinfoを格納
       var $dayGroup = $('#select > optgroup[label='+init_info.day+']'); // <option>を入れる<optgroup>
       if(!$dayGroup[0]){
         $('#select').append($('<optgroup>', {label: init_info.day}));
@@ -97,6 +97,7 @@ function goNext(){
       if(this == 'scenario_now') sendComm(num, 0);
       viewScript('#'+this, num);
     }
+      console.log(num);
   });
   $('#scenario_number').html($('#scenario_now').get(0).className.match(/\d/g).join('') + '/' + scenario.length);
 }
@@ -110,6 +111,8 @@ function goPrev(){
       if(this == 'scenario_now') sendComm(num-1, 1);
       viewScript('#'+this, num-2);
     }
+      console.log("***");
+      console.log(num);
   });
   $('#scenario_number').html($('#scenario_now').get(0).className.match(/\d/g).join('') + '/' + scenario.length);
 }

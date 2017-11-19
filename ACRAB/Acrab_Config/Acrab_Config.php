@@ -43,6 +43,10 @@ $projector_d = $_POST['projector_d'];
 $projector_e = $_POST['projector_e'];
     //var_dump($projector_e);
 
+//改行コード対策
+$word = str_replace(array("\r", "\n"), '', $word);
+
+//POSTで受けた値は文字列となるので、文字列⇒整数型へ
 $on_off_a_ = $_POST['on_off_a_'];
 $on_off_b_ = $_POST['on_off_b_'];
 $on_off_c_ = $_POST['on_off_c_'];
