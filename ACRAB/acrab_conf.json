@@ -5,33 +5,37 @@
   },
   "port": {
     "And": {"name": "アンドロメダ", "box": "N", "pin": "p14"},
-    "Aql": {"name": "わし", "box": "S", "pin": "p04"},
-    "Aqr": {"name": "みずがめ", "box": "S", "pin": "p02"},
-    "Ari": {"name": "おひつじ", "box": "N", "pin": "p02"},
-    "Aur": {"name": "ぎょしゃ", "box": "N", "pin": "p04"},
-    "Boo": {"name": "うしかい", "box": "N", "pin": "p09"},
-    "Cap": {"name": "やぎ", "box": "S", "pin": "p03"},
-    "Cas": {"name": "カシオペア", "box": "N", "pin": "p01"},
-    "Cep": {"name": "ケフェウス", "box": "N", "pin": "p12"},
-    "Cet": {"name": "くじら", "box": "S", "pin": "p14"},
-    "CMa": {"name": "おおいぬ", "box": "S", "pin": "p09"},
-    "CMi": {"name": "こいぬ", "box": "S", "pin": "p10"},
-    "Cnc": {"name": "かに", "box": "N", "pin": "p06"},
-    "Cyg": {"name": "はくちょう", "box": "N", "pin": "p10"},
-    "Gem": {"name": "ふたご", "box": "N", "pin": "p05"},
-    "Leo": {"name": "しし", "box": "N", "pin": "p07"},
-    "Lep": {"name": "うさぎ", "box": "S", "pin": "p13"},
-    "Lyr": {"name": "こと", "box": "N", "pin": "p11"},
-    "Ori": {"name": "オリオン", "box": "S", "pin": "p12"},
-    "Peg": {"name": "ペガスス", "box": "N", "pin": "p13"},
-    "Per": {"name": "ペルセウス ", "box": "N", "pin": "p03"},
-    "Psc": {"name": "うお", "box": "S", "pin": "p01"},
-    "Sco": {"name": "さそり", "box": "S", "pin": "p06"},
     "Sgr": {"name": "いて", "box": "S", "pin": "p05"},
+    "Psc": {"name": "うお", "box": "S", "pin": "p01"},
+    "Lep": {"name": "うさぎ", "box": "S", "pin": "p13"},
+    "Boo": {"name": "うしかい", "box": "N", "pin": "p09"},
     "Tau": {"name": "おうし", "box": "S", "pin": "p11"},
+    "CMa": {"name": "おおいぬ", "box": "S", "pin": "p09"},
     "UMa": {"name": "おおぐま", "box": "N", "pin": "p08"},
     "Vir": {"name": "おとめ", "box": "S", "pin": "p07"},
+    "Ari": {"name": "おひつじ", "box": "N", "pin": "p02"},
+    "Ori": {"name": "オリオン", "box": "S", "pin": "p12"},
+    "Cas": {"name": "カシオペア", "box": "N", "pin": "p01"},
+    "Cnc": {"name": "かに", "box": "N", "pin": "p06"},
+    "Crv": {"name": "からす", "box": "S", "pin": "p06"},
+    "Aur": {"name": "ぎょしゃ", "box": "N", "pin": "p04"},
+    "Cet": {"name": "くじら", "box": "S", "pin": "p14"},
+    "Cep": {"name": "ケフェウス", "box": "N", "pin": "p12"},
+    "CMi": {"name": "こいぬ", "box": "S", "pin": "p10"},
+    "UMi": {"name": "こぐま", "box": "N", "pin": "p10"},
+    "Lyr": {"name": "こと", "box": "N", "pin": "p11"},
+    "Sco": {"name": "さそり", "box": "S", "pin": "p06"},
+    "Leo": {"name": "しし", "box": "N", "pin": "p07"},
     "Lib": {"name": "てんびん", "box": "S", "pin": "p08"},
+    "Cyg": {"name": "はくちょう", "box": "N", "pin": "p10"},
+    "Gem": {"name": "ふたご", "box": "N", "pin": "p05"},
+    "Peg": {"name": "ペガスス", "box": "N", "pin": "p13"},
+    "Per": {"name": "ペルセウス ", "box": "N", "pin": "p03"},
+    "Aqr": {"name": "みずがめ", "box": "S", "pin": "p02"},
+    "Cap": {"name": "やぎ", "box": "S", "pin": "p03"},
+    "Aql": {"name": "わし", "box": "S", "pin": "p04"},
+    "Him": {"name": "織姫", "box": "N", "pin": "p04"},
+    "Hik": {"name": "彦星", "box": "S", "pin": "p04"},
     "St1": {"name": "恒星(1)", "box":"NS", "pin": "p17"},
     "St2": {"name": "恒星(2)", "box":"NS", "pin": "p18"},
     "Fst": {"name": "一等星", "box":"NS", "pin": "p19"},
@@ -42,7 +46,7 @@
     "Cle": {"name": "全投影機消灯"},
     "Spc": {
       "name": "春の大曲線",
-      "value": ["Boo", "UMa", "Vir"]
+      "value": ["Boo", "UMa", "Vir", "Crv"]
     },
     "Spt": {
       "name": "春の大三角",
@@ -56,14 +60,23 @@
       "name": "冬の大三角",
       "value": ["CMa", "CMi", "Ori"]
     },
+    "Wnd": {
+      "name": "冬のダイヤモンド",
+      "value": ["CMa", "CMi", "Ori", "Tau", "Aur", "Gem"]
+    },
+    "Eth": {
+      "name": "エチオピア",
+      "value": ["And", "Cas", "Cep", "Cet", "Peg", "Per"]
+    },
     "Twv": {
       "name": "黄道十二星座",
       "value": ["Aqr", "Ari", "Cap", "Cnc", "Gem", "Leo", "Psc", "Sco", "Sgr", "Tau", "Vir", "Lib"]
     },
     "All": {
       "name": "全星座絵",
-      "value": ["And", "Aql", "Aqr", "Ari", "Aur", "Boo", "Cap", "Cas", "Cep", "Cet", "CMa", "CMi", "Cnc", "Cyg",
-                "Gem", "Leo", "Lep", "Lyr", "Ori", "Peg", "Per", "Psc", "Sco", "Sgr", "Tau", "UMa", "Vir", "Lib"]
+      "value": ["And", "Sgr", "Psc", "Lep", "Boo", "Tau", "CMa", "UMa", "Vir", "Ari", "Ori", "Cas",
+                "Cnc", "Crv", "Aur", "Cet", "Cep", "CMi", "UMi", "Lyr", "Sco", "Leo", "Lib", "Cyg",
+                "Gem", "Peg", "Per", "Aqr", "Cap", "Aql", "Him", "Hik"]
     },
     "Sta": {
       "name": "恒星",

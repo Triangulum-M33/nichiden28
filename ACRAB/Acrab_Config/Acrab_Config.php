@@ -170,7 +170,7 @@ $DATA_ARRAY = array(
                     <p>操作:<br>
                         <select id="projector_a[0]" name="projector_a[0]">
                             <option value="XXX">--使用星座絵を選択--</option> <option value="And">アンドロメダ</option> 
-                            <option value="Sgr">いて</option> <option value="Pse">うお</option>
+                            <option value="Sgr">いて</option> <option value="Psc">うお</option>
                             <option value="Lep">うさぎ</option>　<option value="Boo">うしかい</option>　<option value="Tau">おうし</option>
                             <option value="CMa">おおいぬ</option> <option value="UMa">おおぐま</option> <option value="Vir">おとめ</option>
                             <option value="Ari">おひつじ</option> <option value="Ori">オリオン</option> <option value="Cas">カシオペヤ</option>
@@ -183,14 +183,14 @@ $DATA_ARRAY = array(
                             <option value="Him">織姫</option> <option value="Hik">彦星</option> 
                             <option value="Spc">春の大曲線</option> <option value="Spt">春の大三角</option> <option value="Smt">夏の大三角</option>
                             <option value="Wnt">冬の大三角</option> <option value="Twv">黄道十二星座</option> 
-                            <option value="Wnd">冬のダイヤモンド</option> <option value="Eti">エチオピア神話</option>
+                            <option value="Wnd">冬のダイヤモンド</option> <option value="Eth">エチオピア</option>
                         </select>
                         <!--星座表示on/off（ラジオボタン）-->
                         on<input type="radio" id="on_a[0]" name="on_off_a_[0]" value= 1 checked="checked"/>
                         off<input type="radio" id="off_a[0]" name="on_off_a_[0]" value= 0 checked="checked"/><br>
                         <select id="projector_b[0]" name="projector_b[0]">
                             <option value="XXX">--使用星座絵を選択--</option> <option value="And">アンドロメダ</option> 
-                            <option value="Sgr">いて</option> <option value="Pse">うお</option>
+                            <option value="Sgr">いて</option> <option value="Psc">うお</option>
                             <option value="Lep">うさぎ</option>　<option value="Boo">うしかい</option>　<option value="Tau">おうし</option>
                             <option value="CMa">おおいぬ</option> <option value="UMa">おおぐま</option> <option value="Vir">おとめ</option>
                             <option value="Ari">おひつじ</option> <option value="Ori">オリオン</option> <option value="Cas">カシオペヤ</option>
@@ -203,13 +203,13 @@ $DATA_ARRAY = array(
                             <option value="Him">織姫</option> <option value="Hik">彦星</option>
                             <option value="Spc">春の大曲線</option> <option value="Spt">春の大三角</option> <option value="Smt">夏の大三角</option>
                             <option value="Wnt">冬の大三角</option> <option value="Twv">黄道十二星座</option> 
-                            <option value="Wnd">冬のダイヤモンド</option> <option value="Eti">エチオピア神話</option>
+                            <option value="Wnd">冬のダイヤモンド</option> <option value="Eth">エチオピア</option>
                         </select>
                         on<input type="radio" id="on_b[0]" name="on_off_b_[0]" value= 1 checked="checked"/>
                         off<input type="radio" id="off_b[0]" name="on_off_b_[0]" value= 0 checked="checked"/><br>
                         <select id="projector_c[0]" name="projector_c[0]">
                             <option value="XXX">--使用星座絵を選択--</option> <option value="And">アンドロメダ</option> 
-                            <option value="Sgr">いて</option> <option value="Pse">うお</option>
+                            <option value="Sgr">いて</option> <option value="Psc">うお</option>
                             <option value="Lep">うさぎ</option>　<option value="Boo">うしかい</option>　<option value="Tau">おうし</option>
                             <option value="CMa">おおいぬ</option> <option value="UMa">おおぐま</option> <option value="Vir">おとめ</option>
                             <option value="Ari">おひつじ</option> <option value="Ori">オリオン</option> <option value="Cas">カシオペヤ</option>
@@ -222,13 +222,13 @@ $DATA_ARRAY = array(
                             <option value="Him">織姫</option> <option value="Hik">彦星</option>
                             <option value="Spc">春の大曲線</option> <option value="Spt">春の大三角</option> <option value="Smt">夏の大三角</option>
                             <option value="Wnt">冬の大三角</option> <option value="Twv">黄道十二星座</option> 
-                            <option value="Wnd">冬のダイヤモンド</option> <option value="Eti">エチオピア神話</option>
+                            <option value="Wnd">冬のダイヤモンド</option> <option value="Eth">エチオピア</option>
                         </select>
                         on<input type="radio" id="on_c[0]" name="on_off_c_[0]" value= 1 checked="checked"/>
                         off<input type="radio" id="off_c[0]" name="on_off_c_[0]" value= 0 checked="checked"/><br>
                         <select id="projector_d[0]" name="projector_d[0]">
                             <option value="XXX">--使用星座絵を選択--</option><option value="And">アンドロメダ</option> 
-                            <option value="Sgr">いて</option> <option value="Pse">うお</option>
+                            <option value="Sgr">いて</option> <option value="Psc">うお</option>
                             <option value="Lep">うさぎ</option>　<option value="Boo">うしかい</option>　<option value="Tau">おうし</option>
                             <option value="CMa">おおいぬ</option> <option value="UMa">おおぐま</option> <option value="Vir">おとめ</option>
                             <option value="Ari">おひつじ</option> <option value="Ori">オリオン</option> <option value="Cas">カシオペヤ</option>
@@ -241,13 +241,13 @@ $DATA_ARRAY = array(
                             <option value="Him">織姫</option> <option value="Hik">彦星</option>
                             <option value="Spc">春の大曲線</option> <option value="Spt">春の大三角</option> <option value="Smt">夏の大三角</option>
                             <option value="Wnt">冬の大三角</option> <option value="Twv">黄道十二星座</option> 
-                            <option value="Wnd">冬のダイヤモンド</option> <option value="Eti">エチオピア神話</option>
+                            <option value="Wnd">冬のダイヤモンド</option> <option value="Eth">エチオピア</option>
                         </select>
                         on<input type="radio" id="on_d[0]" name="on_off_d_[0]" value= 1 checked="checked"/>
                         off<input type="radio" id="off_d[0]" name="on_off_d_[0]" value= 0 checked="checked"/><br>
                         <select id="projector_e[0]" name="projector_e[0]">
                             <option value="XXX">--使用星座絵を選択--</option><option value="And">アンドロメダ</option> 
-                            <option value="Sgr">いて</option> <option value="Pse">うお</option>
+                            <option value="Sgr">いて</option> <option value="Psc">うお</option>
                             <option value="Lep">うさぎ</option>　<option value="Boo">うしかい</option>　<option value="Tau">おうし</option>
                             <option value="CMa">おおいぬ</option> <option value="UMa">おおぐま</option> <option value="Vir">おとめ</option>
                             <option value="Ari">おひつじ</option> <option value="Ori">オリオン</option> <option value="Cas">カシオペヤ</option>
@@ -260,7 +260,7 @@ $DATA_ARRAY = array(
                             <option value="Him">織姫</option> <option value="Hik">彦星</option>
                             <option value="Spc">春の大曲線</option> <option value="Spt">春の大三角</option> <option value="Smt">夏の大三角</option>
                             <option value="Wnt">冬の大三角</option> <option value="Twv">黄道十二星座</option> 
-                            <option value="Wnd">冬のダイヤモンド</option> <option value="Eti">エチオピア神話</option>
+                            <option value="Wnd">冬のダイヤモンド</option> <option value="Eth">エチオピア</option>
                         </select>
                         on<input type="radio" id="on_e[0]" name="on_off_e_[0]" value= 1 checked="checked"/>
                         off<input type="radio" id="off_e[0]" name="on_off_e_[0]" value= 0 checked="checked"/><br>
