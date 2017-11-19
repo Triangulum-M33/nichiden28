@@ -67,7 +67,7 @@ $DATA_ARRAY = array(
     ),
 );
     //projectorの中に入れるarrayを調整
-    for($n = 0;$n < 5; $n++){
+    for($n = 0;$n < $count; $n++){
         if($projector_a[$n] == "XXX"){
             unset($projector_a[$n]);
             unset($on_off_a_[$n]);

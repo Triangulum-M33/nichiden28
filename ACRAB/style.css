@@ -145,7 +145,7 @@ button {
 }
 
 button.main_button {
-  width: 150px;
+  width: 140px;
   height: 50px;
   clear: both;
   outline: solid;
@@ -155,21 +155,22 @@ button.main_button {
   margin: 15px 12px;
   box-shadow: 0 0 10px 8px #111;
 }
+
 button.main_button:hover {
   font-size: 20px;
   outline-color: #474;
   box-shadow: 0 0 10px 10px #222;
 }
+button#Wnd {font-size: 15px;}　/*Hoverが上手く作動しない*/
 button.main_button:active {background-color: #666;}
 
-button.big {height: 100px}
+button.big {height: 100px;}
 
 button.projector, .group {outline-color: #116;}
 button.projector:hover, .group:hover {outline-color: #33c;}
 
 button.all {outline-color: #330;}
 button.all:hover {outline-color: #880;}
-
 button.on {
   color: #ccc;
   background-color: #633;
