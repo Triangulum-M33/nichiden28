@@ -70,9 +70,6 @@ namespace Ogose
         /// <summary> 公演モードの管理 </summary>
         private bool isPerfMode = false;
 
-        /// <summary>作業指示書の置いてあるディレクトリの指定 </summary>
-        private string wiDirectory = @"C:\TXTTest";
-
         /// <summary>
         /// シリアルポート名Nameを取得し正規表現に合致するかを確認しシリアルポート名を表示する
         /// </summary>
@@ -119,7 +116,7 @@ namespace Ogose
             };
 
             textblock1.Text = "0.無題.txt";
-            using (FileStream fs = new FileStream(wiDirectory + @"\0.無題.txt", FileMode.Open, FileAccess.ReadWrite))
+            using (FileStream fs = new FileStream(@"..\..\WorkInstructions\0.無題.txt", FileMode.Open, FileAccess.ReadWrite))
             {
                 using (StreamReader sr = new StreamReader(fs, Encoding.GetEncoding("shift_jis"), true))
                 {
@@ -425,7 +422,7 @@ namespace Ogose
             notepadCombobox.Items.Clear();
 
             string[] files = Directory.GetFiles(
-                    wiDirectory, "*.txt", SearchOption.AllDirectories);
+                    @"..\..\WorkInstructions", "*.txt", SearchOption.AllDirectories);
             Array.Sort(files);
 
             foreach (var file in files)
