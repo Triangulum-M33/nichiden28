@@ -69,6 +69,9 @@ var timer_button = new function(){
   this.reset = function(){
     pass_time = 0;
     readTime();
+    $.each(['scenario_prev', 'scenario_now', 'scenario_next'], function(){
+        $('#'+this).removeClass($('#'+this).get(0).className);
+    });
     scenarioInit();
     $('#select').prop('disabled', false);
     $('#timer_restart').hide();
@@ -97,7 +100,6 @@ function goNext(){
       if(this == 'scenario_now') sendComm(num, 0);
       viewScript('#'+this, num);
     }
-      console.log(num);
   });
   $('#scenario_number').html($('#scenario_now').get(0).className.match(/\d/g).join('') + '/' + scenario.length);
 }
@@ -111,8 +113,6 @@ function goPrev(){
       if(this == 'scenario_now') sendComm(num-1, 1);
       viewScript('#'+this, num-2);
     }
-      console.log("***");
-      console.log(num);
   });
   $('#scenario_number').html($('#scenario_now').get(0).className.match(/\d/g).join('') + '/' + scenario.length);
 }
