@@ -1,6 +1,6 @@
 var info, scenario = {};
 const SCENARIO_COUNT = 9; // ファイルの数はブラウザからじゃわからないので必ずここで指定!!!
-
+//**次へ押すとscenario_skipnextにもスクリプト表示される問題を何とかする
 (function(){
   var scenario_file = [];
   /*** Initialize select box ***/
@@ -40,6 +40,8 @@ function scenarioInit(){
   $('#scenario_now').addClass('scenario1').prop('disabled', true);
   viewScript('#scenario_next', 1);
   $('#scenario_next').addClass('scenario2').attr('onclick', 'goNext();').prop('disabled', true);
+  $('#scenario_skipnext').html('Skip').prop('disabled', true);
+  $('#scenario_skipnext').addClass('scenario2').attr('onclick','skipNext();').prop('disabled',true);
   $('#scenario_number').html('1/' + scenario.length);
   $('#progress_bar progress').attr('pass_time', '00:00:00');
 }
@@ -49,6 +51,7 @@ var timer_button = new function(){
     sendComm(0, 0);
     $('#select').prop('disabled', true);
     $('#scenario_next').prop('disabled', false);
+    $('#scenario_skipnext').prop('disabled',false);
     timer = setInterval(function(){pass_time++; readTime();}, 1000);
     $('#timer_start').hide();
     $('#timer_stop').show();
@@ -69,7 +72,7 @@ var timer_button = new function(){
   this.reset = function(){
     pass_time = 0;
     readTime();
-    $.each(['scenario_prev', 'scenario_now', 'scenario_next'], function(){
+    $.each(['scenario_prev', 'scenario_now', 'scenario_next','scenario_skipnext'], function(){
         $('#'+this).removeClass($('#'+this).get(0).className);
     });
     scenarioInit();
@@ -92,26 +95,52 @@ var timer_button = new function(){
 };
 
 function goNext(){
-  $.each(['scenario_prev', 'scenario_now', 'scenario_next'], function(){
+  $.each(['scenario_prev', 'scenario_now', 'scenario_next','scenario_skipnext'], function(){
     var num = $('#'+this).get(0).className.match(/\d/g).join('') / 1; // 数字だけ取り出して渡す(型変換しないとうまくいかなかった)
     $('#'+this).removeClass($('#'+this).get(0).className).addClass('scenario' + (num+1));
-    if(num+1 > scenario.length) $('#'+this).html('(原稿の最後です)').prop('disabled', true);
+    if(num+1 > scenario.length){
+        if(this == 'scenario_skipnext')
+            $('#'+this).html('---').prop('disabled', true);
+        else
+            $('#'+this).html('(原稿の最後です)').prop('disabled', true);
+    } 
     else{
       if(this == 'scenario_now') sendComm(num, 0);
-      viewScript('#'+this, num);
+      if(this != 'scenario_skipnext')
+          viewScript('#'+this, num);
     }
   });
   $('#scenario_number').html($('#scenario_now').get(0).className.match(/\d/g).join('') + '/' + scenario.length);
 }
 
+function skipNext(){
+  $.each(['scenario_prev', 'scenario_now', 'scenario_next','scenario_skipnext'], function(){
+    var num = $('#'+this).get(0).className.match(/\d/g).join('') / 1; // 数字だけ取り出して渡す(型変換しないとうまくいかなかった)
+    $('#'+this).removeClass($('#'+this).get(0).className).addClass('scenario' + (num+1));
+    if(num+1 > scenario.length){
+        if(this == 'scenario_skipnext')
+            $('#'+this).html('---').prop('disabled', true);
+        else
+            $('#'+this).html('(原稿の最後です)').prop('disabled', true);
+    } 
+    else{
+      if(this != 'scenario_skipnext')
+          viewScript('#'+this, num);
+    }
+  });
+  $('#scenario_number').html($('#scenario_now').get(0).className.match(/\d/g).join('') + '/' + scenario.length);
+}
+
+
 function goPrev(){
-  $.each(['scenario_prev', 'scenario_now', 'scenario_next'], function(){
+  $.each(['scenario_prev', 'scenario_now', 'scenario_next','scenario_skipnext'], function(){
     var num = $('#'+this).get(0).className.match(/\d/g).join('') / 1; // 数字だけ取り出して渡す(型変換しないとうまくいかなかった)
     $('#'+this).removeClass($('#'+this).get(0).className).addClass('scenario' + (num-1));
     if(num-1 <= 0) $('#'+this).html('(前のシーンが表示されます)').prop('disabled', true);
     else{
       if(this == 'scenario_now') sendComm(num-1, 1);
-      viewScript('#'+this, num-2);
+      if(this != 'scenario_skipnext')
+          viewScript('#'+this, num-2);
     }
   });
   $('#scenario_number').html($('#scenario_now').get(0).className.match(/\d/g).join('') + '/' + scenario.length);

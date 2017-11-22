@@ -155,13 +155,16 @@ button.main_button {
   margin: 15px 12px;
   box-shadow: 0 0 10px 8px #111;
 }
-
+button#Wnd:hover{  /*どうしてもはみ出る冬のダイヤモンド用*/
+    font-size: 16.5px;
+}
 button.main_button:hover {
   font-size: 20px;
   outline-color: #474;
   box-shadow: 0 0 10px 10px #222;
 }
-button#Wnd {font-size: 15px;}　/*Hoverが上手く作動しない*/
+button#Wnd {font-size: 15px;}　
+
 button.main_button:active {background-color: #666;}
 
 button.big {height: 100px;}
@@ -336,7 +339,6 @@ button.timer_button:disabled {
   border-bottom: 1px #ddd;
   outline: none;
   padding: 14px 40px;
-  font-size: 24px;
   transition: .5s;
 }
 
@@ -352,15 +354,26 @@ button.timer_button:disabled {
 #scenario_prev {
   flex: 1;
   background-color: #301;
+  font-size: 24px;
 }
 #scenario_prev:hover {background-color: #412;}
 #scenario_next {
   flex: 1;
   background-color: #141;
   text-align: right;
+  font-size: 24px;
 }
 #scenario_next:hover {background-color: #252;}
-#scenario_prev:disabled, #prev_next_link #scenario_next:disabled {
+#prev_next_link #scenario_skipnext {
+    flex-basis: 50px;
+    font-size: 12px;
+    text-align: left;
+    padding: 14px 15px;
+    border: 1px solid #555;
+    background-color:#0b0b33;
+}
+#prev_next_link #scenario_skipnext:hover{background-color: #161666;}
+#scenario_prev:disabled, #prev_next_link #scenario_next:disabled, #prev_next_link #scenario_skipnext:disabled{
   background-color: #222;
   color: #555;
 }
