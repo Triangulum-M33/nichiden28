@@ -25,11 +25,11 @@ $(function() {
       });
   });
   $('#refresh_north').click(this, function(){
-    //getRequest(ip.N + 'refresh_confirm/status.json').done(function(res){checkStatus(res)}); //二度手間なのでこれを削除か？
+    //getRequest(ip.N + 'refresh_confirm/status.json').done(function(res){checkStatus(res)}); 
     pinSettingSend(); //pin設定送る
   });
   $('#refresh_south').click(this, function(){
-    //getRequest(ip.S + 'refresh_confirm/status.json').done(function(res){checkStatus(res)}); //二度手間なのでこれを削除か？
+    //getRequest(ip.S + 'refresh_confirm/status.json').done(function(res){checkStatus(res)}); 
     pinSettingSend(); //pin設定送る
   });
   /* 明るさ変更スライダー */

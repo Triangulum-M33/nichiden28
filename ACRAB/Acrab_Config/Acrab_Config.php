@@ -135,7 +135,18 @@ $DATA_ARRAY = array(
         file_put_contents("jsonBOX/".$filename.".json",$make);
         $result = file_get_contents("jsonBOX/".$filename.".json");
     }
-        
+   //以下クリック時実行
+    if(isset($_POST['listmake'])){
+        foreach(glob("scenario/*.json") as $ListMake){
+            $FileList[] = $ListMake;
+    }
+        for($j=0;$j<count($FileList);$j++){
+            $FileListResult["scenariolist"][$j] = $FileList[$j];
+        }
+    $FileListMake = json_encode($FileListResult,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
+    file_put_contents("scenario_list.json",$FileListMake);
+    }
+    
     
 ?>
 <!DOCTYPE HTML>
@@ -149,7 +160,7 @@ $DATA_ARRAY = array(
 </head>
 <body>
     <h1>Acrab_Config</h1>
-    <form  name="frm" action="Acrab_Config.php" method="post" >
+    <form id="frm" name="frm" action="Acrab_Config.php" method="post" >
             <p>ファイル名：<br>
                 <input type="text" id="filename" name="filename"/></p>
             <p>公演日:<br>
@@ -294,6 +305,10 @@ $DATA_ARRAY = array(
                     <a href="https://lab.syncer.jp/Tool/JSON-Viewer/" target="_blank">JSON-Viewer</a></small>
             </p>
         </div>
+      </form>
+      <form id="frm_listmake" name="frm_listmake" action="Acrab_Config.php" method="post">
+          <!--以下1行必要時以外コメントアウト-->
+            <input type="submit" id="listmake"  name="listmake" value="JSONリストの作成"　/>
       </form>
     <footer>
         <small>28日電作成/chromeでの表示推奨です/写真提供:28須田くん/ver1.05</small>

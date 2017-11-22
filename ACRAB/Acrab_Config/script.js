@@ -66,5 +66,14 @@ $(function () {
         document.forms['frm'].elements['count'].value = frm_cnt + 1;
         document.frm.submit();
     });
-    
+    //さあ、画面の前の君もレッツコナミコマンド！
+     var inputKey = [];
+     var konamiCommand = [38,38,40,40,37,39,37,39,66,65];
+     $(window).keyup(function(e) {
+        inputKey.push(e.keyCode);
+        if (inputKey.toString().indexOf(konamiCommand) >= 0) {
+            $('#listmake').css("display","inline");
+            inputKey = [];
+        }
+      });
 });

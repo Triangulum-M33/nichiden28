@@ -26,7 +26,7 @@ h1:first-letter {
     font-size: 1.3em;
     color: #E64A19;
 }
-form {
+form#frm {
     width: 80%;
     background: rgba(255,87,34,0.3);
     overflow-y: scroll;
@@ -34,6 +34,9 @@ form {
     padding: 50px;
     font-family:  Arial,“ヒラギノ角ゴ ProN W3″,“Hiragino Kaku Gothic ProN”,“メイリオ”,Meiryo,sans-serif;
     position: relative;
+}
+form#frm_listmake{
+    height: 30px;
 }
 form p {
     color: #FFFFFF;
@@ -108,7 +111,12 @@ form p {
     color: white;
     border-color: transparent;
 }
-
+#listmake{
+    display: none;
+    background-color: crimson;
+    color: whitesmoke;
+    float: right;
+}
 footer {
     color: #BDBDBD;
     font-size: 0.2em;

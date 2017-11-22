@@ -1,10 +1,22 @@
 var info, scenario = {};
-const SCENARIO_COUNT = 9; // ファイルの数はブラウザからじゃわからないので必ずここで指定!!!
-//**次へ押すとscenario_skipnextにもスクリプト表示される問題を何とかする
+var scenariolist = [];
 (function(){
-  var scenario_file = [];
+var scenario_file = []; 
+  //$.getJsonすると非同期通信のためグローバル変数に配列が入らなかったので$.ajax採用し非同期通信OFFに。.doneでもいけるかもしれない
+  $.ajax({
+  type: "GET", 
+  url: "scenario_list.json",
+  async: false,
+  success: function(data){
+    scenariolist = data.scenariolist;
+  }
+  });
+    
   /*** Initialize select box ***/
-  for(var i=0;i<SCENARIO_COUNT;i++) scenario_file[i] = $.getJSON('scenario/'+ i +'.json'); //変更箇所
+  for(var i=0;i< scenariolist.length;i++){
+      scenario_file[i] = $.getJSON(scenariolist[i]);
+  }
+    
   $.when.apply($, scenario_file).done(function(){ // シナリオファイルが全部取得できたら<option>と<optgroup>追加
     $.each(arguments, function(index){ // argumentsに取得したjsonが全部入ってるのでそれぞれ読む
       var init_info = this[0].info;　//json内のinfoを格納
@@ -27,7 +39,7 @@ const SCENARIO_COUNT = 9; // ファイルの数はブラウザからじゃわか
 
 function getScenarioData(num){
   console.debug('getScenarioData called. num: '+num);
-  $.when($.getJSON('scenario/'+ num +'.json')).done(function(data){
+  $.when($.getJSON(scenariolist[num])).done(function(data){
     info = data.info;
     scenario = data.scenario;
     scenarioInit();
