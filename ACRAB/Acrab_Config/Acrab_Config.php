@@ -132,8 +132,8 @@ $DATA_ARRAY = array(
     
     //使用時は以下をアクティブにすること
     if($filename){
-        file_put_contents("jsonBOX/".$filename.".json",$make);
-        $result = file_get_contents("jsonBOX/".$filename.".json");
+        file_put_contents("scenario/".$filename.".json",$make);
+        $result = file_get_contents("scenario/".$filename.".json");
     }
    //以下クリック時実行
     if(isset($_POST['listmake'])){
@@ -144,7 +144,7 @@ $DATA_ARRAY = array(
             $FileListResult["scenariolist"][$j] = $FileList[$j];
         }
     $FileListMake = json_encode($FileListResult,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
-    file_put_contents("scenario_list.json",$FileListMake);
+    file_put_contents("../scenario_list.json",$FileListMake);
     }
     
     
