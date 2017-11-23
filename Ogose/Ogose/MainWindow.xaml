@@ -56,7 +56,7 @@
                    Grid.Row="2" Grid.RowSpan="4" Grid.Column="1" Grid.ColumnSpan="4"
                    HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.6"/>
             <Grid x:Name="TitleGrid" Grid.Row="1" Grid.ColumnSpan="2">
-                <Label Content="日周緯度変コントローラー &#xA;Ogose Ver1.01&#xA;2017/10/11 nichiden_27,28" FontSize="22" Background="#7F333332"/>
+                <Label Content="日周緯度変コントローラー &#xA;Ogose Ver1.20&#xA;2017/11/24 nichiden27-28" FontSize="22" Background="#7F333332"/>
             </Grid>
             <Grid x:Name="DiurnalSpeedGrid" Grid.Row="3">
                 <Grid.RowDefinitions>
@@ -107,9 +107,9 @@
                                Command="{x:Static local:MainWindow.diurnalPlusButtonCommand}" />
                 <ToggleButton x:Name="diurnalMinusButton" Style="{StaticResource DiurnalMinusButton}" Grid.Row="2" Grid.Column="4"
                                Command="{x:Static local:MainWindow.diurnalMinusButtonCommand}" />
-                <ToggleButton x:Name="latitudePlusButton" Style="{StaticResource LatitudePlusButton}" Grid.Row="0" Grid.Column="2"
+                <ToggleButton x:Name="latitudePlusButton" Style="{StaticResource LatitudePlusButton}" Grid.Row="4" Grid.Column="2"
                                Command="{x:Static local:MainWindow.latitudePlusButtonCommand}" />
-                <ToggleButton x:Name="latitudeMinusButton" Style="{StaticResource LatitudeMinusButton}" Grid.Row="4" Grid.Column="2"
+                <ToggleButton x:Name="latitudeMinusButton" Style="{StaticResource LatitudeMinusButton}" Grid.Row="0" Grid.Column="2"
                                Command="{x:Static local:MainWindow.latitudeMinusButtonCommand}" />
             </Grid>
         </Grid>

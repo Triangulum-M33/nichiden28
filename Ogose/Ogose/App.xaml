@@ -231,11 +231,11 @@
         </Style>
 
         <Style x:Key="LatitudePlusButton" TargetType="ToggleButton" BasedOn="{StaticResource DiurnalPlusButton}">
-            <Setter Property="Content" Value="緯度+" />
+            <Setter Property="Content" Value="緯度-" />
         </Style>
 
         <Style x:Key="LatitudeMinusButton" TargetType="ToggleButton" BasedOn="{StaticResource DiurnalPlusButton}">
-            <Setter Property="Content" Value="緯度-" />
+            <Setter Property="Content" Value="緯度+" />
         </Style>
 
         <Style TargetType="Label">
