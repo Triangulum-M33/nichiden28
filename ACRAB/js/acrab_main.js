@@ -1,20 +1,21 @@
 var ip, port, group = {};
 
-$(function(){ // 読み込み時実行
+(function(){ // 読み込み時実行
   /*** 設定ファイル ***/
   $.getJSON("acrab_conf.json", function(data){
     ip = data.ip;
     port = data.port;
     group = data.group;
-    $.each($.extend(port,group), function(key){
-      $('[id='+key+']').text(this.name); // ボタンに内容を表示する
-    });
-    pinSettingSend(); // pin設定
+    
   });
-});
+}());
 
 
 $(function() {
+  $.each($.extend(port,group), function(key){
+      $('[id='+key+']').text(this.name); // ボタンに内容を表示する
+    });
+    pinSettingSend(); // pin設定
   /* ボタンにclickイベントを追加 */
   $.each($('.main_button'), function(){
       $(this).click(this, function(e){
@@ -67,11 +68,11 @@ function pinSettingSend(){
 }
 
 function getRequest(address, data){
-  data = data || {}
+  data = data || {};
   console.info(address + ': ' + JSON.stringify(data));
   var deferred = $.Deferred(); // 非同期通信なので完了時にデータを渡す処理
   $.get({
-    url: address, dataType: 'json', timeout: 1000, data: data
+    url: address, dataType: 'json', timeout: 1500, data: data
   }).done(function(res) {
     console.debug(res);
     if(address.match(ip.N)) $('#wifi-icons #north').text('正常受信中').removeClass('error');
