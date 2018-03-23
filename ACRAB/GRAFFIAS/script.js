@@ -5,11 +5,11 @@ $(function () {
         var original = $('#form_block\\[' + frm_cnt + '\\]');
         var originCnt = frm_cnt;
         var origintiming = $("input[name='timing\\[" + frm_cnt + "\\]']:checked").val();
-        var originradio_a = $("input[name='on_off_a_\\[" + frm_cnt + "\\]']:checked").val();
-        var originradio_b = $("input[name='on_off_b_\\[" + frm_cnt + "\\]']:checked").val();
-        var originradio_c = $("input[name='on_off_c_\\[" + frm_cnt + "\\]']:checked").val();
-        var originradio_d = $("input[name='on_off_d_\\[" + frm_cnt + "\\]']:checked").val();
-        var originradio_e = $("input[name='on_off_e_\\[" + frm_cnt + "\\]']:checked").val();
+        var originradio_a = $("input[name='on_off_a\\[" + frm_cnt + "\\]']:checked").val();
+        var originradio_b = $("input[name='on_off_b\\[" + frm_cnt + "\\]']:checked").val();
+        var originradio_c = $("input[name='on_off_c\\[" + frm_cnt + "\\]']:checked").val();
+        var originradio_d = $("input[name='on_off_d\\[" + frm_cnt + "\\]']:checked").val();
+        var originradio_e = $("input[name='on_off_e\\[" + frm_cnt + "\\]']:checked").val();
         
         frm_cnt++;　//カウント1増やす
 　　　　　
@@ -34,11 +34,11 @@ $(function () {
           clone.children('button#close').show();
           clone.slideDown('slow');
           original.find("input[name='timing\\[" + originCnt + "\\]'][value='" + origintiming + "']").prop('checked', true);
-          original.find("input[name='on_off_a_\\[" + originCnt + "\\]'][value='" + originradio_a + "']").prop('checked', true);
-          original.find("input[name='on_off_b_\\[" + originCnt + "\\]'][value='" + originradio_b + "']").prop('checked', true);
-          original.find("input[name='on_off_c_\\[" + originCnt + "\\]'][value='" + originradio_c + "']").prop('checked', true);
-          original.find("input[name='on_off_d_\\[" + originCnt + "\\]'][value='" + originradio_d + "']").prop('checked', true);
-          original.find("input[name='on_off_e_\\[" + originCnt + "\\]'][value='" + originradio_e + "']").prop('checked', true);
+          original.find("input[name='on_off_a\\[" + originCnt + "\\]'][value='" + originradio_a + "']").prop('checked', true);
+          original.find("input[name='on_off_b\\[" + originCnt + "\\]'][value='" + originradio_b + "']").prop('checked', true);
+          original.find("input[name='on_off_c\\[" + originCnt + "\\]'][value='" + originradio_c + "']").prop('checked', true);
+          original.find("input[name='on_off_d\\[" + originCnt + "\\]'][value='" + originradio_d + "']").prop('checked', true);
+          original.find("input[name='on_off_e\\[" + originCnt + "\\]'][value='" + originradio_e + "']").prop('checked', true);
         
     });
     $(document).on('click','#close',function(){
@@ -66,7 +66,7 @@ $(function () {
         document.forms['frm'].elements['count'].value = frm_cnt + 1;
         document.frm.submit();
     });
-    //さあ、画面の前の君もレッツコナミコマンド！
+    //コナミコマンドを打つとJSONリストの作成ボタンを出すスクリプト
      var inputKey = [];
      var konamiCommand = [38,38,40,40,37,39,37,39,66,65];
      $(window).keyup(function(e) {
